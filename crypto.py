@@ -7,15 +7,10 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import time
-#---------------------------------#
-# New feature (make sure to upgrade your streamlit library)
-# pip install --upgrade streamlit
 
-#---------------------------------#
 # Page layout
-## Page expands to full width
 st.set_page_config(layout="wide")
-#---------------------------------#
+
 # Title
 
 image = Image.open('logo.jpg')
@@ -26,7 +21,7 @@ st.title('Crypto Price App')
 st.markdown("""
 This app retrieves cryptocurrency prices for the top 100 cryptocurrency from the **CoinMarketCap**!
 """)
-#---------------------------------#
+
 # About
 expander_bar = st.beta_expander("About")
 expander_bar.markdown("""
@@ -36,13 +31,13 @@ expander_bar.markdown("""
 """)
 
 
-#---------------------------------#
-# Page layout (continued)
+
+# Page layout 
 ## Divide page to 3 columns (col1 = sidebar, col2 and col3 = page contents)
 col1 = st.sidebar
 col2, col3 = st.beta_columns((2,1))
 
-#---------------------------------#
+
 # Sidebar + Main panel
 col1.header('Input Options')
 
@@ -128,7 +123,7 @@ def filedownload(df):
 
 col2.markdown(filedownload(df_selected_coin), unsafe_allow_html=True)
 
-#---------------------------------#
+
 # Preparing data for Bar plot of % Price change
 col2.subheader('Table of % Price Change')
 df_change = pd.concat([df_coins.coin_symbol, df_coins.percent_change_1h, df_coins.percent_change_24h, df_coins.percent_change_7d], axis=1)
